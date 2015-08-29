@@ -3,10 +3,18 @@
 namespace Tempest;
 
 use Symfony\Component\Console\Application as SymfonyApplication;
-use Tempest\Commands\HelloCommand;
+use Slim\Slim;
+use Tempest\Commands\Migrations\MigrateCommand;
 
 class Tempest extends SymfonyApplication
 {
+    /**
+     * The Slim Framework instance.
+     *
+     * @var \Slim\Slim
+     */
+    protected $slim;
+
     /**
      * Creates a new Tempest console application.
      *
@@ -14,9 +22,11 @@ class Tempest extends SymfonyApplication
      * @param string $version
      * @return void
      */
-    public function __construct($name, $version)
+    public function __construct(Slim $slim, $version)
     {
-        parent::__construct($name, $version);
+        parent::__construct('Slim Framework', $version);
+
+        $this->slim = $slim;
 
         $this->addDefaultCommands();
     }
@@ -28,6 +38,6 @@ class Tempest extends SymfonyApplication
      */
     protected function addDefaultCommands()
     {
-        $this->add(new HelloCommand());
+        $this->add(new MigrateCommand());
     }
 }
