@@ -55,13 +55,11 @@ class Command extends SymfonyCommand
 
         $this->setDescription($this->description);
 
-        foreach ($this->getArguments() as $argument)
-        {
+        foreach ($this->getArguments() as $argument) {
             $this->getDefinition()->addArgument(Parser::parseArgument($argument));
         }
 
-        foreach ($this->getOptions() as $option)
-        {
+        foreach ($this->getOptions() as $option) {
             $this->getDefinition()->addOption(Parser::parseOption($option));
         }
     }

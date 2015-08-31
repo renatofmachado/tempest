@@ -7,7 +7,6 @@ use Symfony\Component\Console\Input\InputOption;
 
 class Parser
 {
-
     /**
      * Checks if a given string ends with a sub-string.
      *
@@ -16,10 +15,11 @@ class Parser
      * @param  string $needle
      * @return boolean
      */
-    private static function endsWith($haystack, $needle) {
+    private static function endsWith($haystack, $needle)
+    {
         return $needle === ""
                || (($temp = strlen($haystack) - strlen($needle)) >= 0
-               && strpos($haystack, $needle, $temp) !== FALSE);
+               && strpos($haystack, $needle, $temp) !== false);
     }
 
     /**
