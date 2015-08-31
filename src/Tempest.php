@@ -4,7 +4,7 @@ namespace Tempest;
 
 use Symfony\Component\Console\Application as SymfonyApplication;
 use Slim\Slim;
-use Tempest\Commands\Migrations\MigrateCommand;
+use Tempest\Commands\Database\Migrations\MigrateCommand;
 
 class Tempest extends SymfonyApplication
 {
