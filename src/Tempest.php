@@ -18,14 +18,12 @@ class Tempest extends SymfonyApplication
     /**
      * Creates a new Tempest console application.
      *
-     * @param string $name
-     * @param string $version
+     * @param \Slim\Slim $slim
      * @return void
      */
-    public function __construct(Slim $slim, $version)
+    public function __construct(Slim $slim)
     {
-        parent::__construct('Slim Framework', $version);
-
+        parent::__construct('Slim Framework', $slim::VERSION);
         $this->slim = $slim;
 
         $this->addDefaultCommands();
