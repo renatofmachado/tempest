@@ -23,8 +23,6 @@ class BaseCommand extends Command
      */
     protected function getMigrationsPath()
     {
-        $path = str_replace(['/', '\\'], DIRECTORY_SEPARATOR, __DIR__ . '/database/migrations/');
-
-        return $path;
+        return str_replace(['/', '\\'], DIRECTORY_SEPARATOR, __DIR__ . '/database/migrations/');
     }
 }
