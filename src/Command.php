@@ -55,15 +55,17 @@ class Command extends SymfonyCommand
 
         $this->setDescription($this->description);
 
-        foreach ($this->getArguments() as $arguments)
+        foreach ($this->getArguments() as $argument)
         {
-            call_user_func_array([$this, 'addArgument'], $arguments);
+            $this->getDefinition()->addArgument(Parser::parseArgument($argument));
         }
-        foreach ($this->getOptions() as $options)
+
+        foreach ($this->getOptions() as $option)
         {
-            call_user_func_array([$this, 'addOption'], $options);
+            $this->getDefinition()->addOption(Parser::parseOption($option));
         }
     }
+
 
     /**
      * Executes a console command.
