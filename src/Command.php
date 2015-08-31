@@ -9,12 +9,6 @@ use Symfony\Component\Console\Input\InputInterface;
 
 class Command extends SymfonyCommand
 {
-    /**
-     * The Slim Framework instance.
-     *
-     * @var \Slim\Slim
-     */
-    protected $slim;
 
     /**
      * The input interface implementation.
@@ -139,5 +133,15 @@ class Command extends SymfonyCommand
     public function option($key = null)
     {
         return is_null($key) ? $this->input->getOptions() : $this->input->getOption($key);
+    }
+
+    /**
+     * Gets the Slim Framework instance.
+     *
+     * @return \Slim\Slim
+     */
+    public function getSlim()
+    {
+        return $this->getApplication()->getSlim();
     }
 }

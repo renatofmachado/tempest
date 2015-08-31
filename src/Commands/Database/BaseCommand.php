@@ -13,7 +13,7 @@ class BaseCommand extends Command
      */
     protected function getEloquent()
     {
-        return $this->getApplication()->slim->db;
+        return $this->getSlim()->db;
     }
 
     /**
