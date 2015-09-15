@@ -135,13 +135,4 @@ class Command extends SymfonyCommand
         return is_null($key) ? $this->input->getOptions() : $this->input->getOption($key);
     }
 
-    /**
-     * Gets the Slim Framework instance.
-     *
-     * @return \Slim\Slim
-     */
-    public function getSlim()
-    {
-        return $this->getApplication()->getSlim();
-    }
 }

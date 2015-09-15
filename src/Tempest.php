@@ -3,51 +3,82 @@
 namespace Tempest;
 
 use Symfony\Component\Console\Application as SymfonyApplication;
-use Slim\Slim;
 use Tempest\Commands\Database\Migrations\MigrateCommand;
 use Tempest\Commands\Database\Seeds\SeedCommand;
 
 class Tempest extends SymfonyApplication
 {
     /**
-     * The Slim Framework instance.
+     * Service container.
      *
-     * @var \Slim\Slim
+     * @var mixed
      */
-    protected $slim;
+    protected $container;
+
+    /**
+     * Injected services to be used by Tempest.
+     *
+     * @var array
+     */
+    protected $services = [];
 
     /**
      * Creates a new Tempest console application.
      *
-     * @param \Slim\Slim $slim
-     * @return void
-     */
-    public function __construct(Slim $slim)
-    {
-        parent::__construct('Slim Framework', $slim::VERSION);
-        $this->slim = $slim;
-
-        $this->addDefaultCommands();
-    }
-
-    /**
-     * Adds the default console commands.
+     * @param string $name
+     * @param string $version
+     * @param mixed $container
      *
      * @return void
      */
-    protected function addDefaultCommands()
+    public function __construct($name, $version, $container = null)
     {
-        $this->add(new MigrateCommand());
-        $this->add(new SeedCommand());
+        parent::__construct($name, $version);
+        $this->container = $container;
     }
 
     /**
-     * Gets the Slim Framework instance.
+     * Injects a service to Tempest.
      *
-     * @return \Slim\Slim
+     * @param  string $name
+     * @param  mixed $service
+     *
+     * @return void
      */
-    public function getSlim()
+    public function inject($name, $service)
     {
-        return $this->slim;
+        $this->services[$name] = $service;
+    }
+
+    /**
+     * Gets the service container.
+     *
+     * @return mixed
+     */
+    public function getContainer()
+    {
+        return $this->container;
+    }
+
+    /**
+     * Gets the injected services.
+     *
+     * @return array
+     */
+    public function getServices()
+    {
+        return $this->services;
+    }
+
+    /**
+     * Gets an injected service.
+     *
+     * @param  string $key
+     *
+     * @return mixed
+     */
+    public function getService($key)
+    {
+        return $this->services[$key];
     }
 }
