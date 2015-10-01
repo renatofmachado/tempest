@@ -4,6 +4,7 @@ namespace Tempest;
 
 use Symfony\Component\Console\Application as SymfonyApplication;
 use Tempest\Commands\KeyGenerateCommand;
+use Tempest\Commands\TinkerCommand;
 
 class Tempest extends SymfonyApplication
 {
@@ -41,6 +42,7 @@ class Tempest extends SymfonyApplication
     protected function addDefaultCommands()
     {
         $this->add(new KeyGenerateCommand);
+        $this->add(new TinkerCommand);
     }
 
     /**

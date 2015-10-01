@@ -19,7 +19,7 @@ class KeyGenerateCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Generate a key for your application.';
+    protected $description = 'Generate a random key for your application.';
 
     /**
      * Handle the command.
