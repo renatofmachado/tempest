@@ -3,8 +3,7 @@
 namespace Tempest;
 
 use Symfony\Component\Console\Application as SymfonyApplication;
-use Tempest\Commands\Database\Migrations\MigrateCommand;
-use Tempest\Commands\Database\Seeds\SeedCommand;
+use Tempest\Commands\KeyGenerateCommand;
 
 class Tempest extends SymfonyApplication
 {
@@ -35,6 +34,13 @@ class Tempest extends SymfonyApplication
     {
         parent::__construct($name, $version);
         $this->container = $container;
+
+        $this->addDefaultCommands();
+    }
+
+    protected function addDefaultCommands()
+    {
+        $this->add(new KeyGenerateCommand);
     }
 
     /**
