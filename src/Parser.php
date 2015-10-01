@@ -5,22 +5,10 @@ namespace Tempest;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
+use Illuminate\Support\Str;
+
 class Parser
 {
-    /**
-     * Checks if a given string ends with a sub-string.
-     *
-     * @link http://stackoverflow.com/a/10473026/3135770
-     * @param  string $haystack
-     * @param  string $needle
-     * @return boolean
-     */
-    private static function endsWith($haystack, $needle)
-    {
-        return $needle === ""
-               || (($temp = strlen($haystack) - strlen($needle)) >= 0
-               && strpos($haystack, $needle, $temp) !== false);
-    }
 
     /**
      * Parses the input string.
@@ -30,11 +18,17 @@ class Parser
      */
     protected static function parse($input)
     {
-        list($command, $description) = explode(':', $input . ':');
+        $command = $input;
+        $description = null;
+
+        if (Str::contains($input, ' : ')) {
+            list($command, $description) = explode(' : ', $input);
+            $description = trim($description);
+        }
 
         return [
             trim($command),
-            trim($description)
+            $description
         ];
     }
 
@@ -49,17 +43,17 @@ class Parser
         list($command, $description) = self::parse($argument);
 
         // example?*
-        if (self::endsWith($command, '?*')) {
+        if (Str::endsWith($command, '?*')) {
             return new InputArgument(trim($command, '?*'), InputArgument::IS_ARRAY, $description);
         }
 
         // example?
-        if (self::endsWith($command, '?')) {
+        if (Str::endsWith($command, '?')) {
             return new InputArgument(trim($command, '?'), InputArgument::OPTIONAL, $description);
         }
 
         // example*
-        if (self::endsWith($command, '*')) {
+        if (Str::endsWith($command, '*')) {
             return new InputArgument(trim($command, '*'), InputArgument::REQUIRED | InputArgument::IS_ARRAY, $description);
         }
 
@@ -85,12 +79,12 @@ class Parser
         list($shortcut, $command) = self::parseShortcut($command);
 
         // --example= or --example
-        if (self::endsWith($command, '=')) {
+        if (Str::endsWith($command, '=')) {
             return new InputOption(trim($command, '='), $shortcut, InputOption::VALUE_OPTIONAL, $description);
         }
 
         // --example=hello --example=world
-        if (self::endsWith($command, '=*')) {
+        if (Str::endsWith($command, '=*')) {
             return new InputOption(trim($command, '=*'), $shortcut, InputOption::VALUE_OPTIONAL | InputOption::VALUE_IS_ARRAY, $description);
         }
 
