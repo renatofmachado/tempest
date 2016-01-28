@@ -9,7 +9,6 @@ use Symfony\Component\Console\Input\InputInterface;
 
 class Command extends SymfonyCommand
 {
-
     /**
      * The input interface implementation.
      *
@@ -64,6 +63,7 @@ class Command extends SymfonyCommand
      *
      * @param  InputInterface  $input
      * @param  OutputInterface $output
+     *
      * @return mixed
      */
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -100,6 +100,7 @@ class Command extends SymfonyCommand
      *
      * @param  string $command
      * @param  array $parameters
+     *
      * @return int
      */
     public function call($command, array $parameters = [])
@@ -117,6 +118,7 @@ class Command extends SymfonyCommand
      * Get the value of a console command argument.
      *
      * @param  string $key
+     *
      * @return string|array
      */
     public function argument($key = null)
@@ -128,11 +130,11 @@ class Command extends SymfonyCommand
      * Get the value of console command option.
      *
      * @param  string $key
+     *
      * @return string|array
      */
     public function option($key = null)
     {
         return is_null($key) ? $this->input->getOptions() : $this->input->getOption($key);
     }
-
 }

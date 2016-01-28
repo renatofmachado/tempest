@@ -9,13 +9,6 @@ use Tempest\Commands\TinkerCommand;
 class Tempest extends SymfonyApplication
 {
     /**
-     * Service container.
-     *
-     * @var mixed
-     */
-    protected $container;
-
-    /**
      * Injected services to be used by Tempest.
      *
      * @var array
@@ -27,18 +20,21 @@ class Tempest extends SymfonyApplication
      *
      * @param string $name
      * @param string $version
-     * @param mixed $container
      *
      * @return void
      */
-    public function __construct($name, $version, $container = null)
+    public function __construct($name, $version)
     {
         parent::__construct($name, $version);
-        $this->container = $container;
 
         $this->addDefaultCommands();
     }
 
+    /**
+     * Adds the available default commands to Tempest.
+     *
+     * @return void
+     */
     protected function addDefaultCommands()
     {
         $this->add(new KeyGenerateCommand);
@@ -56,16 +52,6 @@ class Tempest extends SymfonyApplication
     public function inject($name, $service)
     {
         $this->services[$name] = $service;
-    }
-
-    /**
-     * Gets the service container.
-     *
-     * @return mixed
-     */
-    public function getContainer()
-    {
-        return $this->container;
     }
 
     /**

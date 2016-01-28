@@ -7,7 +7,6 @@ use Psy\Shell;
 
 class TinkerCommand extends Command
 {
-
     /**
      * The command name.
      *

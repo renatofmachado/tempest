@@ -4,16 +4,15 @@ namespace Tempest;
 
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
-
 use Illuminate\Support\Str;
 
 class Parser
 {
-
     /**
      * Parses the input string.
      *
      * @param  string $input
+     *
      * @return array
      */
     protected static function parse($input)
@@ -36,6 +35,7 @@ class Parser
      * Parses the input string as an argument.
      *
      * @param  string $argument
+     *
      * @return \Symfony\Component\Console\Input\InputArgument
      */
     public static function parseArgument($argument)
@@ -70,6 +70,7 @@ class Parser
      * Parses the input string as an argument.
      *
      * @param  string $option
+     *
      * @return \Symfony\Component\Console\Input\InputOption
      */
     public static function parseOption($option)
@@ -101,6 +102,7 @@ class Parser
      * Parses an option's shortcut.
      *
      * @param  string $option
+     *
      * @return array
      */
     private static function parseShortcut($option)

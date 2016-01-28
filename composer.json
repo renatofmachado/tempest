@@ -1,8 +1,8 @@
 {
     "name": "oxyzero/tempest",
     "type": "library",
-    "description": "Tempest is a command line interface for Slim 2: Starter Kit.",
-    "keywords": ["slim", "framework", "cli"],
+    "description": "Tempest is a command-line interface for your projects based on the Symfony Console component.",
+    "keywords": ["console", "cli"],
     "homepage": "https://github.com/oxyzero/tempest",
     "license": "MIT",
     "authors": [
